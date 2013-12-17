@@ -2,7 +2,8 @@ var paused = true,
     spiro,
     canvas,
     context,
-    center;
+    center,
+    point;
 
 function Gear(radius, speed) {
     this.radius = radius;
@@ -14,7 +15,7 @@ Gear.prototype.step = function(){
     this.rotation += this.speed;
 }
 
-Gear.prototype.get_vector() = function() {
+Gear.prototype.get_vector = function() {
     var rads = Math.PI * this.rotation / 360;
     var x = this.radius * Math.cos(rads);
     var y = this.radius * Math.sin(rads);
@@ -28,10 +29,10 @@ function Spirograph() {
 
 Spirograph.prototype.add_gear = function(gear) {
     this.gears.push(gear);
-    this.size += this.gear.radius;
+    this.size += gear.radius;
 }
 
-Spirograph.prototype.step() = function() {
+Spirograph.prototype.step = function() {
     var len = this.gears.length;
     var i = 0;
     var gear;
@@ -50,15 +51,23 @@ Spirograph.prototype.step() = function() {
 
 function mainloop() {
     if (paused == false) {
-        
+        context.moveTo(point[0], point[1]);
+        point = spiro.step();
+        context.lineTo(point[0], point[1]);
+        context.stroke();
+        setTimeout(mainloop, 10);
     }
 }
 
 function init() {
     canvas = document.getElementById("canv");
     context = canvas.getContext("2d");
+    context.strokeStyle = "#000000";
     center = [canvas.width / 2, canvas.height / 2];
-    spiro = Spirograph();
-    spiro.add_gear(new Gear(100, 5));
+    spiro = new Spirograph();
+    spiro.add_gear(new Gear(300, 5));
     spiro.add_gear(new Gear(50, 17));
+    point = spiro.step();
+    paused = false;
+    mainloop();
 }
