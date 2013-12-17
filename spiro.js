@@ -51,7 +51,7 @@ function mainloop() {
         point = spiro.step();
         context.lineTo(point[0], point[1]);
         context.stroke();
-        setTimeout(mainloop, 1);
+        setTimeout(mainloop, 10);
     }
 }
 
@@ -79,9 +79,8 @@ function init() {
     context.strokeStyle = "#000000";
     center = [canvas.width / 2, canvas.height / 2];
     spiro = new Spirograph();
-    spiro.add_gear(new Gear(200, 5));
-    spiro.add_gear(new Gear(100, 11));
-    spiro.add_gear(new Gear(50, 17));
+    spiro.add_gear(new Gear(200, 7));
+    spiro.add_gear(new Gear(107, -11));
     point = spiro.step();
     paused = true;
     mainloop();
