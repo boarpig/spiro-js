@@ -13,6 +13,7 @@ function Gear(radius, speed) {
 
 Gear.prototype.step = function(){
     this.rotation += this.speed;
+    this.rotation = this.rotation % 360;
 }
 
 Gear.prototype.get_vector = function() {
