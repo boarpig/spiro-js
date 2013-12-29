@@ -123,19 +123,27 @@ function readKey(event) {
 
 function init() {
     'use strict';
+
+    // visible "main" canvas
     canvas = document.getElementById('canv');
     context = canvas.getContext('2d');
-    context.strokeStyle = '#000000';
+
+    // own context for spirograph line since it doesn't need redrawing
     line_canvas = document.createElement('canvas');
     line_canvas.width = canvas.width;
     line_canvas.height = canvas.height;
     line_context = line_canvas.getContext('2d');
     line_context.clearRect(0, 0, canvas.width, canvas.height);
+    line_context.strokeStyle = '#666666';
+
+    // own context for spirograph "gears" since they are redrawn each frame
     circle_canvas = document.createElement('canvas');
     circle_canvas.width = canvas.width;
     circle_canvas.height = canvas.height;
     circle_context = circle_canvas.getContext('2d');
     circle_context.clearRect(0, 0, canvas.width, canvas.height);
+    circle_context.strokeStyle = '#888888';
+
     center = [canvas.width / 2, canvas.height / 2];
     spiro = new Spirograph();
     spiro.add_gear(30, -2);
