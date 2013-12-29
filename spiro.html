@@ -17,9 +17,12 @@
         <div id="controls">
             <form>
                 New gear's size, as percentage of larger gear.<br><br>
-                size: <input class=ctrls id="gearsize" type="number">
-                <br>
-                speed:<input class=ctrls id="gearspeed" type="number"> 
+                size: <output id="sizeout"></output>
+                <input class=ctrls id="gearsize" type="range"
+                    onchange="sizeout.value=value"><br>
+                speed:<output id="speedout"></output>
+                <input class=ctrls id="gearspeed" type="range" min=1
+                    max=20 onchange="speedout.value = value"><br>
                 <input onClick="new_gear();" type="button" value="Add gear">
                 <input onClick="del_gear();" type="button" 
                 value="Remove smallest">
