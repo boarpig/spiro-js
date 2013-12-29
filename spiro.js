@@ -117,6 +117,12 @@ function toggle_pause() {
     return false;
 }
 
+function new_gear() {
+    var percent = parseInt(document.getElementById('gearsize').value);
+    var speed = parseInt(document.getElementById('gearspeed').value);
+    spiro.add_gear(percent, speed);
+}
+
 function readKey(event) {
     'use strict';
     switch (event.keyCode) {

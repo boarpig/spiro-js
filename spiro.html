@@ -15,6 +15,13 @@
     <div id="master">
         <a id="pause" onclick="toggle_pause();" href="#">Start</a>
         <div id="controls">
+            <form>
+                New gear's size, as percentage of larger gear.<br><br>
+                size: <input id="gearsize" type="number">
+                <br>
+                speed:<input id="gearspeed" type="number"> 
+                <input onClick="new_gear();" type="button" value="Add gear.">
+            </form>
         </div>
         <div id="list">
             No gears.
