@@ -179,8 +179,7 @@ function init() {
 
     center = [canvas.width / 2, canvas.height / 2];
     spiro = new Spirograph();
-    spiro.add_gear(30, -2);
-    spiro.add_gear(20, 3);
+    update_gearlist();
     point = spiro.step();
     paused = true;
     mainloop();
