@@ -74,17 +74,31 @@ Spirograph.prototype.step = function() {
 function mainloop() {
     'use strict';
     if (paused === false) {
+        draw_lines();
+        draw_circles();
+
+        // draw everything on the visible canvas
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.drawImage(circle_canvas, 0, 0);
+        context.drawImage(line_canvas, 0, 0);
+
+        setTimeout(mainloop, 10);
+    }
+}
+
+function draw_lines() {
         // update the line on off-screen canvas
         line_context.moveTo(point[0], point[1]);
         point = spiro.step();
         line_context.lineTo(point[0], point[1]);
         line_context.stroke();
+}
 
+function draw_circles() {
         // predraw the circles on off-screen canvas
         var i, lines, gear;
         lines = spiro.lines;
         circle_context.clearRect(0, 0, canvas.width, canvas.height);
-        circle_context.drawImage(line_canvas, 0, 0);
         circle_context.beginPath();
         circle_context.arc(point[0], point[1], 3, 0, Math.PI * 2, false);
         for (i = 0; i < spiro.gears.length; i++) {
@@ -94,13 +108,6 @@ function mainloop() {
                     Math.PI * 2, false);
         }
         circle_context.stroke();
-
-        // draw everything on the visible canvas
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        context.drawImage(circle_canvas, 0, 0);
-
-        setTimeout(mainloop, 10);
-    }
 }
 
 function toggle_pause() {
