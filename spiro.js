@@ -51,6 +51,7 @@ Spirograph.prototype.add_gear = function(percent, speed) {
     new_line = new Line(line_len, speed);
     this.lines.push(new_line);
     this.gears.push(new Gear(0, 0, line_len));
+    update_gearlist();
 };
 
 Spirograph.prototype.step = function() {
@@ -124,6 +125,19 @@ function readKey(event) {
             break;
     }
     // console.log(event.keyCode);
+}
+
+function update_gearlist() {
+    'use strict';
+    var gearlist, content, i, gears;
+    gearlist = document.getElementById('list');
+    gears = spiro.gears;
+    content = "";
+    content += 'You have ' + gears.length + ' gears.<br>';
+    for (i = 0; i < gears.length; i++) {
+        content += "Gear " + (i + 1) + ": " + gears[i].radius + '<br>';
+    }
+    gearlist.innerHTML = content;
 }
 
 function init() {
