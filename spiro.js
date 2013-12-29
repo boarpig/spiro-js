@@ -3,11 +3,10 @@ var paused = true,
     canvas,
     context,
     center,
-    point,
-    circles;
+    point;
 
-function Line(radius, speed) {
-    this.radius = radius;
+function Line(length, speed) {
+    this.length = length;
     this.speed = speed;
     this.rotation = 0;
 }
@@ -15,19 +14,24 @@ function Line(radius, speed) {
 Line.prototype.step = function() {
     this.rotation += this.speed;
     var rads = Math.PI * this.rotation / 360;
-    var x = this.radius * Math.cos(rads);
-    var y = this.radius * Math.sin(rads);
+    var x = this.length * Math.cos(rads);
+    var y = this.length * Math.sin(rads);
     return [x, y];
 }
 
 function Spirograph() {
-    this.gears = [];
+    this.lines = [400];
+    this.lines.push(new Line(400, speed))
     this.size = 0;
 }
 
-Spirograph.prototype.add_gear = function(gear) {
-    this.gears.push(gear);
-    this.size += gear.radius;
+Spirograph.prototype.add_gear = function(percent, speed) {
+    last_line =  this.lines[this.lines.length - 1];
+    line_len = last_line * percent / 100;
+    last_line.length *= ((100 - percent) / 100);
+    new_line = (line_len, speed);
+    this.lines.push(new_line);
+    this.gears.push(new_line);
 }
 
 Spirograph.prototype.step = function() {
