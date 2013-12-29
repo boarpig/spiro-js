@@ -105,7 +105,7 @@ function mainloop() {
 
 function toggle_pause() {
     'use strict';
-    pause = document.getElementById("pause");
+    var pause = document.getElementById("pause");
     if (paused === true) {
         paused = false;
         pause.innerHTML = "Pause";
