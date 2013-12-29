@@ -90,7 +90,7 @@ function mainloop() {
         for (i = 0; i < spiro.gears.length; i++) {
             gear = spiro.gears[i];
             circle_context.moveTo(gear.x + gear.radius, gear.y);
-            circle_context.arc(gear.x, gear.y, gear.radius, 0, 
+            circle_context.arc(gear.x, gear.y, gear.radius, 0,
                     Math.PI * 2, false);
         }
         circle_context.stroke();
