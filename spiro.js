@@ -85,6 +85,7 @@ function mainloop() {
         circle_context.clearRect(0, 0, canvas.width, canvas.height);
         circle_context.drawImage(line_canvas, 0, 0);
         circle_context.beginPath();
+        circle_context.arc(point[0], point[1], 3, 0, Math.PI * 2, false);
         for (i = 0; i < spiro.gears.length; i++) {
             gear = spiro.gears[i];
             circle_context.moveTo(gear.x + gear.radius, gear.y);
