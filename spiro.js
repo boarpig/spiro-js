@@ -50,7 +50,7 @@ Spirograph.prototype.add_gear = function(percent, speed) {
     last_line.length *= ((100 - percent) / 100);
     new_line = new Line(line_len, speed);
     this.lines.push(new_line);
-    this.gears.push(new Gear(0, 0, line_len));
+    this.gears.push(new Gear(center[0] * 2 - line_len, center[1], line_len));
     update_gearlist();
 };
 
