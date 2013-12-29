@@ -129,6 +129,9 @@ function new_gear() {
     var speed = parseInt(document.getElementById('gearspeed').value);
     line_context.clearRect(0, 0, canvas.width, canvas.height);
     spiro.add_gear(percent, speed);
+    draw_circles();
+    line_context.clearRect(0, 0, canvas.width, canvas.height);
+    context.drawImage(circle_canvas, 0, 0);
 }
 
 function del_gear() {
@@ -189,5 +192,8 @@ function init() {
     update_gearlist();
     point = spiro.step();
     paused = true;
+    draw_circles();
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.drawImage(circle_canvas, 0, 0);
     mainloop();
 }
