@@ -3,15 +3,16 @@ var paused = true,
     canvas,
     context,
     center,
-    point;
+    point,
+    circles;
 
-function Gear(radius, speed) {
+function Line(radius, speed) {
     this.radius = radius;
     this.speed = speed;
     this.rotation = 0;
 }
 
-Gear.prototype.step = function() {
+Line.prototype.step = function() {
     this.rotation += this.speed;
     var rads = Math.PI * this.rotation / 360;
     var x = this.radius * Math.cos(rads);
@@ -79,8 +80,8 @@ function init() {
     context.strokeStyle = "#000000";
     center = [canvas.width / 2, canvas.height / 2];
     spiro = new Spirograph();
-    spiro.add_gear(new Gear(200, 7));
-    spiro.add_gear(new Gear(107, -11));
+    spiro.add_gear(new Line(200, 7));
+    spiro.add_gear(new Line(107, -11));
     point = spiro.step();
     paused = true;
     mainloop();
