@@ -120,7 +120,15 @@ function toggle_pause() {
 function new_gear() {
     var percent = parseInt(document.getElementById('gearsize').value);
     var speed = parseInt(document.getElementById('gearspeed').value);
+    line_context.clearRect(0, 0, canvas.width, canvas.height);
     spiro.add_gear(percent, speed);
+}
+
+function del_gear() {
+    var line = spiro.lines.pop();
+    spiro.lines[spiro.lines.length - 1].length += line.length;
+    spiro.gears.pop();
+    update_gearlist();
 }
 
 function readKey(event) {
