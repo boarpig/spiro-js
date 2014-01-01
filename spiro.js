@@ -44,10 +44,11 @@ function Spirograph() {
 
 Spirograph.prototype.add_gear = function(percent, direction) {
     'use strict';
-    var line_len, last_line, new_line, new_speed;
+    var line_len, last_line, new_line, new_speed, real_perc;
     last_line = this.lines[this.lines.length - 1];
     line_len = last_line.length * percent / 100;
-    new_speed = Math.abs(last_line.speed / (percent / 100)) / 2;
+    real_perc = percent / 100;
+    new_speed = Math.abs(last_line.speed / real_perc) * (1 - real_perc);
     if (direction) {
         new_speed *= -1;
     }
