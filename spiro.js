@@ -195,6 +195,7 @@ function init() {
     center = [canvas.width / 2, canvas.height / 2];
     spiro = new Spirograph();
     update_gearlist();
+    document.getElementById('sizeout').value = document.getElementById("gearsize").value;
     point = spiro.step();
     paused = true;
     draw_circles();
