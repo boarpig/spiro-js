@@ -42,12 +42,16 @@ function Spirograph() {
     this.size = 0;
 }
 
-Spirograph.prototype.add_gear = function(percent) {
+Spirograph.prototype.add_gear = function(percent, direction) {
     'use strict';
     var line_len, last_line, new_line, new_speed;
     last_line = this.lines[this.lines.length - 1];
     line_len = last_line.length * percent / 100;
-    new_speed = last_line.speed / Math.pow(percent / 100, 2);
+    if (direction) {
+        new_speed = (-1) * last_line.speed / Math.pow(percent / 100, 2);
+    } else {
+        new_speed = last_line.speed / Math.pow(percent / 100, 2);
+    }
     last_line.length *= ((100 - percent) / 100);
     new_line = new Line(line_len, new_speed);
     new_line.rotation = last_line.rotation;
@@ -128,9 +132,9 @@ function toggle_pause() {
 
 function new_gear() {
     var percent = parseInt(document.getElementById('gearsize').value);
-    var speed = 0;
+    var direction = document.getElementById('direction').checked;
     line_context.clearRect(0, 0, canvas.width, canvas.height);
-    spiro.add_gear(percent);
+    spiro.add_gear(percent, direction);
     draw_circles();
     line_context.clearRect(0, 0, canvas.width, canvas.height);
     context.drawImage(circle_canvas, 0, 0);

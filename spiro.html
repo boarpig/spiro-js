@@ -20,9 +20,11 @@
                 size: <output id="sizeout"></output>
                 <input class=ctrls id="gearsize" type="range"
                     onchange="sizeout.value=value"><br>
+                <input type="checkbox" id="direction" >
+                <label for="direction">Counter-clockwise</label>
                 <input onClick="new_gear();" type="button" value="Add gear">
                 <input onClick="del_gear();" type="button" 
-                value="Remove smallest">
+                    value="Remove smallest">
             </form>
         </div>
         <div id="list">
