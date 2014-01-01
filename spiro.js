@@ -130,7 +130,7 @@ function toggle_pause() {
 }
 
 function new_gear() {
-    var percent = parseInt(document.getElementById('gearsize').value);
+    var percent = parseFloat(document.getElementById('gearsize').value);
     var direction = document.getElementById('direction').checked;
     line_context.clearRect(0, 0, canvas.width, canvas.height);
     spiro.add_gear(percent, direction);
