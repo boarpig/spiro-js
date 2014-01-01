@@ -36,7 +36,7 @@ Line.prototype.step = function() {
 function Spirograph() {
     'use strict';
     this.lines = [];
-    this.lines.push(new Line(400, 1));
+    this.lines.push(new Line(400, 2));
     this.gears = [];
     this.gears.push(new Gear(center[0], center[1], 400));
     this.size = 0;
