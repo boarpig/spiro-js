@@ -47,10 +47,9 @@ Spirograph.prototype.add_gear = function(percent, direction) {
     var line_len, last_line, new_line, new_speed;
     last_line = this.lines[this.lines.length - 1];
     line_len = last_line.length * percent / 100;
+    new_speed = Math.abs(last_line.speed / (percent / 100));
     if (direction) {
-        new_speed = (-1) * last_line.speed / Math.pow(percent / 100, 2);
-    } else {
-        new_speed = last_line.speed / Math.pow(percent / 100, 2);
+        new_speed *= -1;
     }
     last_line.length *= ((100 - percent) / 100);
     new_line = new Line(line_len, new_speed);
