@@ -158,13 +158,20 @@ function readKey(event) {
 
 function update_gearlist() {
     'use strict';
-    var gearlist, content, i, gears;
+    var gearlist, content, i, gears, lines;
     gearlist = document.getElementById('list');
     gears = spiro.gears;
+    lines = spiro.lines;
     content = "";
     content += 'You have ' + gears.length + ' gears.<br>';
     for (i = 0; i < gears.length; i++) {
-        content += "Gear " + (i + 1) + ": " + gears[i].radius + '<br>';
+        content += "Gear " + (i + 1) + ": " + gears[i].radius + " ";
+        if (lines[i].speed > 0) {
+            content += "->";
+        } else {
+            content += "<-";
+        }
+        content += "<br>";
     }
     gearlist.innerHTML = content;
 }
