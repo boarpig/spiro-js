@@ -16,12 +16,14 @@
         <a id="pause" onclick="toggle_pause();" href="#">Start</a>
         <div id="controls">
             <form>
-                New gear's size, as percentage of larger gear.<br><br>
-                size: <input class=ctrls id="gearsize" type="number" value=33><br>
+                size: <input class=ctrls id="gearsize" type="number" value=33>
+                <label for=gearsize>%</label>
+                <br>
                 <input type="checkbox" id="direction" >
-                <label for="direction">Counter-clockwise</label>
-                <input onClick="new_gear();" type="button" value="Add gear">
-                <input onClick="del_gear();" type="button" 
+                <label for="direction" id=dirlabel>Counter-clockwise</label><br>
+                <input onClick="new_gear();" class=butan type="button"
+                    value="Add gear"><br>
+                <input onClick="del_gear();" class=butan type="button" 
                     value="Remove smallest">
             </form>
         </div>
