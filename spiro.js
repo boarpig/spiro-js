@@ -7,7 +7,8 @@ var paused = true,
     circle_canvas,
     circle_context,
     center,
-    point;
+    point,
+    rounds;
 
 function Gear(x, y, radius) {
     'use strict';
@@ -93,28 +94,28 @@ function mainloop() {
 }
 
 function draw_lines() {
-        // update the line on off-screen canvas
-        line_context.beginPath();
-        line_context.moveTo(point[0], point[1]);
-        point = spiro.step();
-        line_context.lineTo(point[0], point[1]);
-        line_context.stroke();
+    // predraw the lin on off-screen canvas
+    line_context.beginPath();
+    line_context.moveTo(point[0], point[1]);
+    point = spiro.step();
+    line_context.lineTo(point[0], point[1]);
+    line_context.stroke();
 }
 
 function draw_circles() {
-        // predraw the circles on off-screen canvas
-        var i, lines, gear;
-        lines = spiro.lines;
-        circle_context.clearRect(0, 0, canvas.width, canvas.height);
-        circle_context.beginPath();
-        circle_context.arc(point[0], point[1], 3, 0, Math.PI * 2, false);
-        for (i = 0; i < spiro.gears.length; i++) {
-            gear = spiro.gears[i];
-            circle_context.moveTo(gear.x + gear.radius, gear.y);
-            circle_context.arc(gear.x, gear.y, gear.radius, 0,
-                    Math.PI * 2, false);
-        }
-        circle_context.stroke();
+    // predraw the circles on off-screen canvas
+    var i, lines, gear;
+    lines = spiro.lines;
+    circle_context.clearRect(0, 0, canvas.width, canvas.height);
+    circle_context.beginPath();
+    circle_context.arc(point[0], point[1], 3, 0, Math.PI * 2, false);
+    for (i = 0; i < spiro.gears.length; i++) {
+        gear = spiro.gears[i];
+        circle_context.moveTo(gear.x + gear.radius, gear.y);
+        circle_context.arc(gear.x, gear.y, gear.radius, 0,
+                Math.PI * 2, false);
+    }
+    circle_context.stroke();
 }
 
 function toggle_pause() {
