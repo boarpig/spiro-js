@@ -94,6 +94,7 @@ function mainloop() {
 
 function draw_lines() {
         // update the line on off-screen canvas
+        line_context.beginPath();
         line_context.moveTo(point[0], point[1]);
         point = spiro.step();
         line_context.lineTo(point[0], point[1]);
