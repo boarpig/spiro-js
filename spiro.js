@@ -138,12 +138,17 @@ function toggle_pause() {
 
 function new_gear() {
     var percent = parseFloat(document.getElementById('gearsize').value);
-    var direction = document.getElementById('direction').checked;
-    line_context.clearRect(0, 0, canvas.width, canvas.height);
-    spiro.add_gear(percent, direction);
-    draw_circles();
-    line_context.clearRect(0, 0, canvas.width, canvas.height);
-    context.drawImage(circle_canvas, 0, 0);
+    if (percent > 0) {
+        var direction = document.getElementById('direction').checked;
+        line_context.clearRect(0, 0, canvas.width, canvas.height);
+        spiro.add_gear(percent, direction);
+        draw_circles();
+        line_context.clearRect(0, 0, canvas.width, canvas.height);
+        context.drawImage(circle_canvas, 0, 0);
+    } else {
+        // TODO: make nicer notification thingie
+        alert("Size cannot be negative");
+    }
 }
 
 function del_gear() {
