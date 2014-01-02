@@ -147,10 +147,12 @@ function new_gear() {
 }
 
 function del_gear() {
-    var line = spiro.lines.pop();
-    spiro.lines[spiro.lines.length - 1].length += line.length;
-    spiro.gears.pop();
-    update_gearlist();
+    if (spiro.lines.length > 1) {
+        var line = spiro.lines.pop();
+        spiro.lines[spiro.lines.length - 1].length += line.length;
+        spiro.gears.pop();
+        update_gearlist();
+    }
 }
 
 function readKey(event) {
