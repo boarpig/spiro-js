@@ -119,14 +119,11 @@ function draw_circles() {
 
 function toggle_pause() {
     'use strict';
-    var pause = document.getElementById("pause");
     if (paused === true) {
         paused = false;
-        pause.innerHTML = "Pause";
         mainloop();
     } else {
         paused = true;
-        pause.innerHTML = "Start";
     }
     return false;
 }

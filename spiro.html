@@ -8,12 +8,12 @@
     <meta charset="UTF-8">
 </head>
 <body onload="init();">
-    <canvas id=canv width=800 height=800 tabindex="1"
+    <canvas id=canv width=800 height=800 tabindex="1" onclick="toggle_pause();"
             onkeydown="readKey(event)">
         Canvas not supported.
     </canvas>
     <div id="master">
-        <a id="pause" onclick="toggle_pause();" href="#">Start</a><br><br>
+        To start or pause the spirograph, simply click on the canvas.<br><br>
         <div id="controls">
             <form>
                 size: <input class=ctrls id="gearsize" type="number" value=33>
