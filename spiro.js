@@ -8,7 +8,8 @@ var paused = true,
     circle_context,
     center,
     point,
-    rounds;
+    rounds = 0;
+    prev_angle = 0;
 
 function Gear(x, y, radius) {
     'use strict';
@@ -28,6 +29,7 @@ Line.prototype.step = function() {
     'use strict';
     var x, y, rads;
     this.rotation += this.speed;
+    this.rotation %= 720;
     rads = Math.PI * this.rotation / 360;
     x = this.length * Math.cos(rads);
     y = this.length * Math.sin(rads);
@@ -88,6 +90,7 @@ function mainloop() {
         context.clearRect(0, 0, canvas.width, canvas.height);
         context.drawImage(circle_canvas, 0, 0);
         context.drawImage(line_canvas, 0, 0);
+        context.fillText(rounds, 10, 40);
 
         setTimeout(mainloop, 10);
     }
@@ -98,6 +101,10 @@ function draw_lines() {
     line_context.beginPath();
     line_context.moveTo(point[0], point[1]);
     point = spiro.step();
+    if (prev_angle > spiro.lines[0].rotation) {
+        rounds += 1;
+    }
+    prev_angle = spiro.lines[0].rotation;
     line_context.lineTo(point[0], point[1]);
     line_context.stroke();
 }
@@ -182,6 +189,7 @@ function init() {
     // visible "main" canvas
     canvas = document.getElementById('canv');
     context = canvas.getContext('2d');
+    context.font = "32pt sans-serif";
 
     // own context for spirograph line since it doesn't need redrawing
     line_canvas = document.createElement('canvas');
